@@ -27,13 +27,14 @@ Our experience was with OpenReview v1. A couple of points to note.
 * Initially I was worried that I might accidentally permanently delete or overwrite papers or reviews. But actually I needn't have worried, it seems that most things in the OpenReview API are reversible. For example, edges are never deleted, you just assign them a "deletion date". 
 
 * Connecting: 
+
 ```py 
 import openreview
-
 client = openreview.Client(baseurl='https://api.openreview.net', username='redacted', password='redacted')
 ```
 
 * Download all paper pdfs:
+
 ```py
 for note in notes:
     if(note.content.get("pdf")):
@@ -43,44 +44,42 @@ for note in notes:
 ```
 
 * Extract a tab-separated list of papers and bids:
+
 ```py
 print(client.get_edges_count(invitation='AppliedCategoryTheory.org/ACT/2023/Conference/Reviewers/-/Bid'))
-
 papers = openreview.tools.iterget_notes(
-    client,
-    invitation='AppliedCategoryTheory.org/ACT/2023/Conference/-/Submission',
+    client, 
+	invitation='AppliedCategoryTheory.org/ACT/2023/Conference/-/Submission',
     )
-
 for p in papers:
     bids = openreview.tools.iterget_edges(
         client,
-        invitation='AppliedCategoryTheory.org/ACT/2023/Conference/Reviewers/-/Bid',
+		invitation='AppliedCategoryTheory.org/ACT/2023/Conference/Reviewers/-/Bid',
         head=p.id
         )
-
     for b in bids:
         print(p.content['title'],"\t",b.head,"\t",b.tail,"\t",b.label)
 ```
 
 * Extract a tab-separated list of papers and conflicts-of-interest
+
 ```py
 papers = openreview.tools.iterget_notes(
     client,
     invitation='AppliedCategoryTheory.org/ACT/2023/Conference/-/Submission',
     )
-
 for p in papers:
     conflicts = openreview.tools.iterget_edges(
         client,
         invitation='AppliedCategoryTheory.org/ACT/2023/Conference/Reviewers/-/Conflict',
         head=p.id
         )
-    
     print(p.number,"\t",p.content['title'],"\t",p.content['authors'],"\t",[c.tail for c in conflicts if c.weight==-1 ])
 ```
 
 
 * Delete a conflict of interest
+
 ```py
 edges = client.get_edges(invitation = 'AppliedCategoryTheory.org/ACT/2023/Conference/Reviewers/-/Conflict',head='paperid',tail='~userid1')
 for edge in edges:
@@ -90,6 +89,7 @@ for edge in edges:
 ```
 
 * Add a conflict of interest
+
 ```py
 # add conflict
 client.post_edge(openreview.Edge(
@@ -114,6 +114,7 @@ client.post_edge(openreview.Edge(
 
 
 * Extract a tab-separated list of papers and authors who are on the PC
+
 ```py
 papers = openreview.tools.iterget_notes(
     client,
@@ -132,6 +133,7 @@ for p in papers:
 ```		
 	
 * Extract a list of the authors on the PC.
+
 ```py
 papers = openreview.tools.iterget_notes(
     client,
