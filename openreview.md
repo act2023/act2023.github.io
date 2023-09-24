@@ -22,7 +22,7 @@ Do get in touch with Sam Staton if anything is unclear.
 
 Our experience was with OpenReview v1. A couple of points to note.
 
-* OpenReview does have a dev server, which you can use for trying out configurations and seeing what happens when you run processes. It took a little while to set up an account on this, and you'll need at least two accounts for testing permissions. If you are using non-standard OpenReview workflows or experiment with the python API then I would recommend to do this earlier on in the process and not right before you are about to do something urgent and important. 
+* OpenReview does have a [dev server](https://dev.openreview.net/), which you can use for trying out configurations and seeing what happens when you run processes. It took a little while to set up an account on this, and you'll need at least two accounts for testing permissions. If you are using non-standard OpenReview workflows or experiment with the python API then I would recommend to do this earlier on in the process and not right before you are about to do something urgent and important. 
 
 * Initially I was worried that I might accidentally permanently delete or overwrite papers or reviews. But actually I needn't have worried, it seems that most things in the OpenReview API are reversible. For example, edges are never deleted, you just assign them a "deletion date". 
 
