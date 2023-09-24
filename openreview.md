@@ -2,7 +2,7 @@
 layout: act
 ---
 
-# Notes on using OpenReview
+# Notes on using OpenReview (written after the event)
 
 [OpenReview](https://openreview.net/) is a free conference management system. The default workflow is a little different from what is common in theoretical computer science venues, such as provided by easychair and hotcrp. But we found it was quite easy to adapt it. Moreover OpenReview provides free email support, and a [Python API](https://openreview-py.readthedocs.io/en/latest/) so that you can tailor things quite considerably and fairly easily. Here are some notes from the ACT 2023 PC chairs  in case they are useful for future events. 
 
